@@ -1,0 +1,17 @@
+/* Login.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+    height: 100%;
+  }
+.background-image {
+    background-image: url('../assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh; /* Adjust as needed for your layout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

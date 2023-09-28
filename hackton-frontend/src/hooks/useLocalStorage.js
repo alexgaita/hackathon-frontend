@@ -1,4 +1,4 @@
-const useLocaleStorage = () => {
+const useLocalStorage = () => {
   const addItem = (name, value) => {
     localStorage.setItem(name, value);
   };
@@ -12,4 +12,4 @@ const useLocaleStorage = () => {
   };
 };
 
-export default useLocaleStorage;
+export default useLocalStorage;

@@ -10,29 +10,19 @@ const Searchbar = (props) => {
         height: "100px",
         backgroundColor: "#001789",
         display: "flex",
-        flexDirection: "row",
-        justifyContent: "flex-start",
         alignItems: "center",
+        justifyContent: "space-between",
         gap: "10px",
+        position: "relative",
       }}
     >
       <Box
-        marginLeft="10px"
-        component="img"
-        src={logo}
-        sx={{ height: "30px", width: "auto" }}
-      />
-
-      <Box
         sx={{
-          width: "auto",
-          height: "100%",
           display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
           alignItems: "center",
           gap: "10px",
-          marginLeft: "auto",
+          position: "absolute",
+          right: "180px", 
         }}
       >
         <IconButton>
@@ -53,20 +43,59 @@ const Searchbar = (props) => {
       </Box>
 
       <Box
-        marginRight="10px"
         sx={{
-          width: "auto",
-          height: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          position: "absolute",
+          right: "10px", 
         }}
       >
         <Avatar sx={{ height: "50px", width: "50px" }} />
         <Typography variant="subtitle1" color="white">
           Stefan Rudareanu
         </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+        }}
+      >
+        <Box
+          marginLeft="10px"
+          component="img"
+          src={logo}
+          sx={{ height: "30px", width: "auto" }}
+        />
+      </Box>
+
+      <Box
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+       <IconButton>
+          <Avatar
+            alt="My Button"
+            src={myButtonImage}
+            variant="square"
+            sx={{
+              width: "80px", 
+              height: "80px",
+              position: "absolute",
+              top: "10%", 
+              left: "50%",
+              transform: "translateX(-50%)",
+               }}
+                />
+      </IconButton>
       </Box>
     </Box>
   );
