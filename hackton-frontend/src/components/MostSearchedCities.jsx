@@ -66,6 +66,7 @@ const MostSearchedCities = () => {
               }}>
                 <Typography
                   variant="body2"
+                  pl={1}
                   sx={{
                     color: "white"
                   }}
