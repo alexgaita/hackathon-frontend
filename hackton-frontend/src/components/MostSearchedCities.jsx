@@ -8,30 +8,21 @@ import image3 from "../assets/image3.png"
 const MostSearchedCities = () => {
   const [cityData, setCityData] = useState([]);
   
-  const data = {
-    "data": [
-      {"city": "Berlin", "currentPrice": "110", "meanPrice": "102", "statistic": "low"},
-      {"city": "Paris", "currentPrice": "120", "meanPrice": "112", "statistic": "high"},
-      {"city": "Koln", "currentPrice": "120", "meanPrice": "112", "statistic": "high"}
-
-    ]
-  };
-
+  
   const backgroundImages = [
    image1, image2, image3
   ];
 
   useEffect(() => {
-    // fetch("http://localhost:5001/api/statistics/searched-cities")
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     setCityData(data.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching data:", error);
-    //   });
+    fetch("http://localhost:5001/api/statistics/searched-cities")
+      .then((response) => response.json())
+      .then((data) => {
+        setCityData(data.data.slice(0,3));
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
 
-    setCityData(data.data.slice(0,3));
   }, []);
 
   const getRandomBackgroundImage = () => {
