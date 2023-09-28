@@ -1,7 +1,12 @@
-import { Box } from "@mui/material";
+import { Box, Typography, Grid } from "@mui/material";
 import Searchbar from "../components/Searchbar";
+<<<<<<< HEAD
 import { useState } from "react";
 import ChatBot from "./ChatBot";
+=======
+import UpcomingEvents from "../components/UpcomingEvents";
+
+>>>>>>> c77c151 (Added Upcoming events)
 const Homepage = () => {
   const [isOpenModal, setOpenModal] = useState(false);
   const handleCloseModal = () => {
@@ -18,11 +23,37 @@ const Homepage = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
-        alignItems: "cenet",
+        alignItems: "center",
       }}
     >
       <Searchbar open={handleOpenModal} />
       <ChatBot isOpen={isOpenModal} close={handleCloseModal} />
+
+      <Box
+        sx={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "center",
+        }}
+      >
+      </Box>
+
+      <Grid
+        container
+        direction="column"
+        alignItems="flex-start"
+        sx={{
+          flex: 1,
+          padding: "20px", 
+        }}
+      >
+        <Typography variant="subtitle1" fontWeight="bold" sx={{ marginBottom: "10px", fontFamily: "Fira Sans, sans-serif" }}>
+          Upcoming Events
+        </Typography>
+        <UpcomingEvents />
+      </Grid>
     </Box>
   );
 };

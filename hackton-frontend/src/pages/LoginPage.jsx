@@ -8,9 +8,11 @@ import {
   Alert,
   AlertTitle,
   Box,
-  Typography,
-} from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+  Typography
+} from '@mui/material';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+
+import './LoginPage.css'; 
 
 import "./Login.css";
 
