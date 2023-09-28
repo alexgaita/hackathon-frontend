@@ -1,6 +1,6 @@
 const messages = [
   {
-    text: "Salut ce faci Boss?",
+    text: "Salut ce faci?",
     user: true,
   },
   {

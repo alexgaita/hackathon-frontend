@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import { Box, Avatar, Typography, IconButton } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import CloseIcon from "@mui/icons-material/Close";
 import profilepic from "../../assets/Profile.jpg";
 
 const ChatBotHeader = (props) => {
   const username = props.username;
   const position = props.position;
+  const handleClose = props.close;
   return (
     <Box
       sx={{
@@ -36,8 +37,11 @@ const ChatBotHeader = (props) => {
         <Typography variant="h5">{username}</Typography>
         <Typography variant="subtitle1">{position}</Typography>
       </Box>
-      <IconButton sx={{ marginRight: "10px", marginLeft: "auto" }}>
-        <MoreVertIcon />
+      <IconButton
+        onClick={handleClose}
+        sx={{ marginRight: "10px", marginLeft: "auto" }}
+      >
+        <CloseIcon fontSize="large" />
       </IconButton>
     </Box>
   );

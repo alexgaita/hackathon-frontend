@@ -26,7 +26,7 @@ const ChatBoxMessageMapper = (props) => {
         gap: "10px",
       }}
     >
-      {displayMessages()}
+      {messages && displayMessages()}
     </Box>
   );
 };

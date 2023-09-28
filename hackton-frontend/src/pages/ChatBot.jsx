@@ -42,6 +42,7 @@ const ChatBot = (props) => {
         }}
       >
         <ChatBotHeader
+          close={close}
           username={"Lauren Jones"}
           position={"Medical Assistant"}
         />
