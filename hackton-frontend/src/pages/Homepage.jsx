@@ -1,12 +1,9 @@
 import { Box, Typography, Grid } from "@mui/material";
 import Searchbar from "../components/Searchbar";
-<<<<<<< HEAD
 import { useState } from "react";
 import ChatBot from "./ChatBot";
-=======
 import UpcomingEvents from "../components/UpcomingEvents";
 
->>>>>>> c77c151 (Added Upcoming events)
 const Homepage = () => {
   const [isOpenModal, setOpenModal] = useState(false);
   const handleCloseModal = () => {

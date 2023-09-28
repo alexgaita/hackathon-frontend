@@ -14,8 +14,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import './LoginPage.css'; 
 
-import "./Login.css";
-
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
