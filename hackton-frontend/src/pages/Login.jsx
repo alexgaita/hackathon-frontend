@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import useLocalStorage from "../hooks/useLocalStorage"
+import { useState } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 import {
   Container,
   Paper,
@@ -8,40 +8,47 @@ import {
   Alert,
   AlertTitle,
   Box,
-  Typography
-} from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+  Typography,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
-import './Login.css'; 
-
+import "./Login.css";
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const localStorage = useLocalStorage();
 
   const handleLogin = () => {
     // replace with response from backend call
-    if (username === 'user' && password === 'pass') {
+    if (username === "user" && password === "pass") {
       setLoggedIn(true);
-      localStorage.addItem('username', username);
-      setError('');
+      localStorage.addItem("username", username);
+      setError("");
     } else {
-      setError('Invalid username or password');
+      setError("Invalid username or password");
     }
   };
 
   const handleLogout = () => {
-    localStorage.deleteItem('username');
+    localStorage.deleteItem("username");
     setLoggedIn(false);
   };
 
   return (
     <Container component="main" maxWidth="xs">
-      <Paper elevation={3} sx={{ padding: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <LockOutlinedIcon color="primary" sx={{ fontSize: '2rem' }} />
+      <Paper
+        elevation={3}
+        sx={{
+          padding: 2,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <LockOutlinedIcon color="primary" sx={{ fontSize: "2rem" }} />
         {error && (
           <Alert severity="error" sx={{ marginTop: 2 }}>
             <AlertTitle>Error</AlertTitle>
@@ -49,7 +56,11 @@ const Login = () => {
           </Alert>
         )}
         {loggedIn ? (
-          <Button variant="contained" sx={{color:"#001789" }} onClick={handleLogout}>
+          <Button
+            variant="contained"
+            sx={{ color: "#001789" }}
+            onClick={handleLogout}
+          >
             Logout
           </Button>
         ) : (
@@ -66,7 +77,7 @@ const Login = () => {
               autoFocus
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              sx={{color:"#001789" }}
+              sx={{ color: "#001789" }}
             />
             <TextField
               variant="outlined"
@@ -80,17 +91,20 @@ const Login = () => {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              sx={{color:"#001789" }}
+              sx={{ color: "#001789" }}
             />
             <Button
               type="button"
               fullWidth
               variant="contained"
               onClick={handleLogin}
-              sx={{color:"#001789" }}
+              sx={{ color: "#001789" }}
             >
-              <Typography sx={{color: "#ffffff", textTransform: "capitalize"  }}>Login</Typography>
-              
+              <Typography
+                sx={{ color: "#ffffff", textTransform: "capitalize" }}
+              >
+                Login
+              </Typography>
             </Button>
           </Box>
         )}

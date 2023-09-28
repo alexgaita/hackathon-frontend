@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import logo from "../assets/Hotel24.png";
+import myButtonImage from "../assets/microphone_button.png";
 const Searchbar = (props) => {
   const openModal = props.open;
   return (
@@ -22,7 +23,7 @@ const Searchbar = (props) => {
           alignItems: "center",
           gap: "10px",
           position: "absolute",
-          right: "180px", 
+          right: "180px",
         }}
       >
         <IconButton>
@@ -49,7 +50,7 @@ const Searchbar = (props) => {
           justifyContent: "center",
           alignItems: "center",
           position: "absolute",
-          right: "10px", 
+          right: "10px",
         }}
       >
         <Avatar sx={{ height: "50px", width: "50px" }} />
@@ -81,21 +82,21 @@ const Searchbar = (props) => {
           transform: "translate(-50%, -50%)",
         }}
       >
-       <IconButton>
+        <IconButton>
           <Avatar
             alt="My Button"
             src={myButtonImage}
             variant="square"
             sx={{
-              width: "80px", 
+              width: "80px",
               height: "80px",
               position: "absolute",
-              top: "10%", 
+              top: "10%",
               left: "50%",
               transform: "translateX(-50%)",
-               }}
-                />
-      </IconButton>
+            }}
+          />
+        </IconButton>
       </Box>
     </Box>
   );
