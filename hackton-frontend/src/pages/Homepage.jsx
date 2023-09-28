@@ -3,6 +3,7 @@ import Searchbar from "../components/Searchbar";
 import { useState } from "react";
 import ChatBot from "./ChatBot";
 import UpcomingEvents from "../components/UpcomingEvents";
+import MostSearchedCities from "../components/MostSearchedCities"
 
 const Homepage = () => {
   const [isOpenModal, setOpenModal] = useState(false);
@@ -25,6 +26,15 @@ const Homepage = () => {
     >
       <Searchbar open={handleOpenModal} />
       <ChatBot isOpen={isOpenModal} close={handleCloseModal} />
+
+     <Box
+        sx={{
+         marginLeft:"auto",
+         marginTop:"60px"
+        }}
+      >
+        <MostSearchedCities />
+      </Box>
 
       <Box
         sx={{
