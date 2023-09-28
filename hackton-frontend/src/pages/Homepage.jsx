@@ -1,4 +1,4 @@
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Searchbar from "../components/Searchbar";
 import { useState } from "react";
 import ChatBot from "./ChatBot";

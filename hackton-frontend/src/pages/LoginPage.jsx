@@ -5,13 +5,13 @@ import {
   TextField,
   Button,
   Box,
-  Typography
-} from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+  Typography,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
-import './LoginPage.css';
+import "./LoginPage.css";
 
-import * as AUTH_REQ from '../api/auth'
+import * as AUTH_REQ from "../api/auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,12 +19,12 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await AUTH_REQ.login(email, password)
-      localStorage.setItem('token', response.token)
-      window.location.pathname = '/home'
-    }
-    catch (e) {
-      console.error(e)
+      const response = await AUTH_REQ.login(email, password);
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("username", response.user.name);
+      window.location.pathname = "/home";
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -77,9 +77,7 @@ const Login = () => {
             onClick={handleLogin}
             sx={{ color: "#001789" }}
           >
-            <Typography
-              sx={{ color: "#ffffff", textTransform: "capitalize" }}
-            >
+            <Typography sx={{ color: "#ffffff", textTransform: "capitalize" }}>
               Login
             </Typography>
           </Button>

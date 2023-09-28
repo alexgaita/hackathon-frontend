@@ -6,9 +6,13 @@ const useLocalStorage = () => {
     localStorage.removeItem(name);
   };
 
+  const getItem = (name) => {
+    return localStorage.getItem(name);
+  };
   return {
     addItem,
     deleteItem,
+    getItem,
   };
 };
 

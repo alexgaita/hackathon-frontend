@@ -3,6 +3,7 @@ import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import logo from "../assets/Hotel24.png";
 import myButtonImage from "../assets/microphone_button.png";
 const Searchbar = (props) => {
+  const username = localStorage.getItem("username");
   const openModal = props.open;
   return (
     <Box
@@ -55,7 +56,7 @@ const Searchbar = (props) => {
       >
         <Avatar sx={{ height: "50px", width: "50px" }} />
         <Typography variant="subtitle1" color="white">
-          Stefan Rudareanu
+          {username}
         </Typography>
       </Box>
 
@@ -94,8 +95,8 @@ const Searchbar = (props) => {
               top: "10%",
               left: "50%",
               transform: "translateX(-50%)",
-              border: '4px solid white',
-              borderRadius: 4
+              border: "4px solid white",
+              borderRadius: 4,
             }}
           />
         </IconButton>

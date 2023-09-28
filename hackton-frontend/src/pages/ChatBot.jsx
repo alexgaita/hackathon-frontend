@@ -2,21 +2,27 @@
 import { Box, Modal, Divider } from "@mui/material";
 import ChatBotHeader from "../components/chatbot/ChatBotHeader";
 import ChatBoxMessageMapper from "../components/chatbot/ChatBoxMessageMapper";
-import messages from "../utils/constants";
 import ChatBoxTextArea from "../components/chatbot/ChatBoxTextAres";
 import { requestGenerator } from "../utils/generateRequest";
 import { useState } from "react";
+import { postQuestion } from "../service/service";
 const ChatBot = (props) => {
+  const username = localStorage.getItem("username");
   const isOpen = props.isOpen;
   const close = props.close;
-  const [messagesState, setMessagesState] = useState(messages);
+  const [messagesState, setMessagesState] = useState([]);
   const [textAreaValue, setTextAreaValue] = useState("");
-  const handleMessageSent = () => {
-    console.log(requestGenerator(textAreaValue));
+  const [loading, setLoading] = useState(true);
+  const handleMessageSent = async () => {
     setMessagesState((value) => [
       ...value,
       { text: textAreaValue, user: true },
     ]);
+    setLoading(true);
+    const data = await postQuestion(requestGenerator(textAreaValue)).then(
+      setLoading(false)
+    );
+    setMessagesState((value) => [...value, { text: data, user: false }]);
   };
 
   return (
@@ -45,11 +51,11 @@ const ChatBot = (props) => {
       >
         <ChatBotHeader
           close={close}
-          username={"Lauren Jones"}
+          username={username}
           position={"Medical Assistant"}
         />
         <Divider sx={{ width: "90%", backgroundColor: "#FFE33A" }} />
-        <ChatBoxMessageMapper messages={messagesState} />
+        <ChatBoxMessageMapper messages={messagesState} loading={loading} />
         <Divider sx={{ width: "90%", backgroundColor: "#FFE33A" }} />
         <ChatBoxTextArea
           setTextAreaValue={setTextAreaValue}

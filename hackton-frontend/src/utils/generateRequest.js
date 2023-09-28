@@ -10,14 +10,14 @@ export const requestGenerator = (text) => {
 
   const indexOfIn = text.indexOf("in");
   const indexOfStart = text.indexOf("starting");
-  requestData.location = text.slice(indexOfIn + 2, indexOfStart - 1);
+  requestData.location = text.slice(indexOfIn + 2, indexOfStart - 1).trim();
 
   const indexOfWith = text.indexOf("with");
   const indexOfUntil = text.indexOf("until");
-  requestData.start = text.slice(indexOfWith + 5, indexOfUntil - 1);
+  requestData.start = text.slice(indexOfWith + 5, indexOfUntil - 1).trim();
 
   const indexOfAnd = text.indexOf("and");
-  requestData.end = text.slice(indexOfUntil + 6, indexOfAnd - 1);
+  requestData.end = text.slice(indexOfUntil + 6, indexOfAnd - 1).trim();
 
   requestData.price = Number(text.slice(text.length - 4, text.length - 1));
 
