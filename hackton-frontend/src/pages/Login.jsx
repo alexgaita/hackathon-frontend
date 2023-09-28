@@ -3,12 +3,12 @@ import useLocalStorage from "../hooks/useLocalStorage"
 import {
   Container,
   Paper,
-  Typography,
   TextField,
   Button,
   Alert,
   AlertTitle,
-  Box
+  Box,
+  Typography
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
@@ -39,7 +39,6 @@ const Login = () => {
   };
 
   return (
-    <Box className="background-image">
     <Container component="main" maxWidth="xs">
       <Paper elevation={3} sx={{ padding: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <LockOutlinedIcon color="primary" sx={{ fontSize: '2rem' }} />
@@ -50,7 +49,7 @@ const Login = () => {
           </Alert>
         )}
         {loggedIn ? (
-          <Button variant="contained" color="secondary" onClick={handleLogout}>
+          <Button variant="contained" sx={{color:"#001789" }} onClick={handleLogout}>
             Logout
           </Button>
         ) : (
@@ -67,6 +66,7 @@ const Login = () => {
               autoFocus
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              sx={{color:"#001789" }}
             />
             <TextField
               variant="outlined"
@@ -80,21 +80,22 @@ const Login = () => {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              sx={{color:"#001789" }}
             />
             <Button
               type="button"
               fullWidth
               variant="contained"
-              color="primary"
               onClick={handleLogin}
+              sx={{color:"#001789" }}
             >
-              Login
+              <Typography sx={{color: "#ffffff", textTransform: "capitalize"  }}>Login</Typography>
+              
             </Button>
           </Box>
         )}
       </Paper>
     </Container>
-    </Box>
   );
 };
 
