@@ -1,40 +1,31 @@
 import { useState } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
 import {
   Container,
   Paper,
   TextField,
   Button,
-  Alert,
-  AlertTitle,
   Box,
   Typography
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-import './LoginPage.css'; 
+import './LoginPage.css';
+
+import * as AUTH_REQ from '../api/auth'
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [error, setError] = useState("");
-  const localStorage = useLocalStorage();
 
-  const handleLogin = () => {
-    // replace with response from backend call
-    if (username === "user" && password === "pass") {
-      setLoggedIn(true);
-      localStorage.addItem("username", username);
-      setError("");
-    } else {
-      setError("Invalid username or password");
+  const handleLogin = async () => {
+    try {
+      const response = await AUTH_REQ.login(email, password)
+      localStorage.setItem('token', response.token)
+      window.location.pathname = '/home'
     }
-  };
-
-  const handleLogout = () => {
-    localStorage.deleteItem("username");
-    setLoggedIn(false);
+    catch (e) {
+      console.error(e)
+    }
   };
 
   return (
@@ -49,65 +40,50 @@ const Login = () => {
         }}
       >
         <LockOutlinedIcon color="primary" sx={{ fontSize: "2rem" }} />
-        {error && (
-          <Alert severity="error" sx={{ marginTop: 2 }}>
-            <AlertTitle>Error</AlertTitle>
-            {error}
-          </Alert>
-        )}
-        {loggedIn ? (
-          <Button
-            variant="contained"
+
+        <Box>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             sx={{ color: "#001789" }}
-            onClick={handleLogout}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            sx={{ color: "#001789" }}
+          />
+          <Button
+            type="button"
+            fullWidth
+            variant="contained"
+            onClick={handleLogin}
+            sx={{ color: "#001789" }}
           >
-            Logout
-          </Button>
-        ) : (
-          <Box>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoComplete="username"
-              autoFocus
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              sx={{ color: "#001789" }}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              sx={{ color: "#001789" }}
-            />
-            <Button
-              type="button"
-              fullWidth
-              variant="contained"
-              onClick={handleLogin}
-              sx={{ color: "#001789" }}
+            <Typography
+              sx={{ color: "#ffffff", textTransform: "capitalize" }}
             >
-              <Typography
-                sx={{ color: "#ffffff", textTransform: "capitalize" }}
-              >
-                Login
-              </Typography>
-            </Button>
-          </Box>
-        )}
+              Login
+            </Typography>
+          </Button>
+        </Box>
       </Paper>
     </Container>
   );

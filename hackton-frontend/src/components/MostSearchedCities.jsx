@@ -1,29 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { Card, Typography, Box, Container } from "@mui/material";
+import { Typography, Box, Container } from "@mui/material";
 import image1 from "../assets/image1.png"
 import image2 from "../assets/image2.png"
 import image3 from "../assets/image3.png"
 
+import * as STAT_REQ from '../api/statistics'
 
 const MostSearchedCities = () => {
   const [cityData, setCityData] = useState([]);
-  
-  
+
   const backgroundImages = [
-   image1, image2, image3
+    image1, image2, image3
   ];
 
   useEffect(() => {
-    fetch("http://localhost:5001/api/statistics/searched-cities")
-      .then((response) => response.json())
-      .then((data) => {
-        setCityData(data.data.slice(0,3));
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-
+    handleGetMostSearched()
   }, []);
+
+  const handleGetMostSearched = async () => {
+    try {
+      const response = await STAT_REQ.getMostSearchedCities()
+      console.log(response)
+      setCityData(response.data)
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   const getRandomBackgroundImage = () => {
     const randomIndex = Math.floor(Math.random() * backgroundImages.length);
@@ -31,75 +33,75 @@ const MostSearchedCities = () => {
   };
 
   return (
-    <Container>
-      <Typography variant="h7" sx={{ fontFamily: "Fira Sans, sans-serif", fontWeight: "bold", marginBottom:"14px"}}>
+    <Box>
+      <Typography variant="h6" sx={{ fontFamily: "Fira Sans, sans-serif", fontWeight: "bold", marginBottom: "14px" }}>
         Most Searched Cities
       </Typography>
-      <Box display="flex">
+      <Box display="flex" flexDirection="row">
         {cityData.map((cityInfo, index) => (
-          <Card
+          <Box
             key={index}
+            borderRadius={3}
             sx={{
+              ml: index === 0 ? 0 : 3,
               width: 250,
-              height: 250, 
-              marginRight: 2,
+              height: 250,
               display: "flex",
               flexDirection: "column",
-              alignItems: "center", 
-              justifyContent: "center", 
-              position: "relative", 
-              backgroundImage:  `url(${getRandomBackgroundImage()})`, 
-              backgroundSize: "cover", 
+              position: "relative",
+              backgroundImage: `url(${getRandomBackgroundImage()})`,
+              backgroundSize: "cover",
             }}
           >
-            <Typography variant="h4" fontWeight="bold" color={"white"}>
-              {cityInfo.city}
-            </Typography>
-            <Typography
-              variant="h7"
-              sx={{
-                textAlign: "left",
-                position: "absolute",
-                bottom: "20px",
-                left: "5px",
-                backgroundColor: cityInfo.statistic === "low" ? "green" : "red",
-                color:"white"
-              }}
-            >
-              {cityInfo.statistic === "low" ? "Low" : "High"} price{" "} 
-              <Typography variant="h8" fontWeight="bold" component="span" sx={{marginRight:"10px", marginLeft:"10px"}}>
-                {cityInfo.meanPrice+ "%"}
-              </Typography>
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end",
-                position: "absolute",
-                bottom: "5px",
-                right: "5px",
-              }}
-            >
-              <Typography
-                variant="h7"
-                fontWeight={"bold"}
-                sx={{
-                  color: "white",
-                  padding: "2px 5px",
-                  borderRadius: "4px",
-                }}
-              >
-                {cityInfo.currentPrice + "€"}
-              </Typography>
-              <Typography sx={{ fontSize: "10px", color:"white" }}>
-                Per night
+            <Box sx={{ flex: 0.3 }} />
+            <Box sx={{ flex: 1 }} display="flex" alignItems="center" justifyContent="center">
+              <Typography variant="h4" fontWeight="bold" color={"white"}>
+                {cityInfo.city}
               </Typography>
             </Box>
-          </Card>
+            <Box display="flex" flexDirection="row" pb={2}>
+              <Box display="flex" alignItems="center" sx={{
+                height: '25px',
+                backgroundColor: cityInfo.statistic === "low" ? "green" : "red",
+              }}>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "white"
+                  }}
+                >
+                  {cityInfo.statistic === "low" ? "Low" : "High"} price{" "}
+                  <Typography variant="h8" fontWeight="bold" component="span" sx={{ marginRight: "10px", marginLeft: "10px" }}>
+                    {cityInfo.meanPrice + "%"}
+                  </Typography>
+                </Typography>
+              </Box>
+              <Box
+                pr={2}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  ml: 'auto'
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  fontWeight={"bold"}
+                  sx={{
+                    color: "white",
+                  }}
+                >
+                  {cityInfo.currentPrice + " €"}
+                </Typography>
+                <Typography ml={'auto'} sx={{ fontSize: "10px", color: "white" }}>
+                  Per night
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
         ))}
       </Box>
-    </Container>
+    </Box>
   );
 };
 

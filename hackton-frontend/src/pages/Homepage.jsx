@@ -4,6 +4,7 @@ import { useState } from "react";
 import ChatBot from "./ChatBot";
 import UpcomingEvents from "../components/UpcomingEvents";
 import MostSearchedCities from "../components/MostSearchedCities"
+import AccommodationsBased from "../components/AccommodationsBased"
 
 const Homepage = () => {
   const [isOpenModal, setOpenModal] = useState(false);
@@ -26,41 +27,22 @@ const Homepage = () => {
     >
       <Searchbar open={handleOpenModal} />
       <ChatBot isOpen={isOpenModal} close={handleCloseModal} />
-
-     <Box
-        sx={{
-         marginLeft:"auto",
-         marginTop:"60px"
-        }}
-      >
-        <MostSearchedCities />
+      <Box pt={2}>
+        <Box display="flex" flexDirection="row" flex={1} width="100%" p={3.5}>
+          <Box sx={{ flex: 1 }}>
+            <AccommodationsBased />
+          </Box>
+          <Box sx={{ flex: 1 }}>
+            <MostSearchedCities />
+          </Box>
+        </Box>
+        <Box p={4} pt={0}>
+          <Typography variant="h6" fontWeight="bold" sx={{ fontFamily: "Fira Sans, sans-serif",  marginBottom: "14px"  }}>
+            Upcoming Events
+          </Typography>
+          <UpcomingEvents />
+        </Box>
       </Box>
-
-      <Box
-        sx={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          alignItems: "center",
-        }}
-      >
-      </Box>
-
-      <Grid
-        container
-        direction="column"
-        alignItems="flex-start"
-        sx={{
-          flex: 1,
-          padding: "20px", 
-        }}
-      >
-        <Typography variant="subtitle1" fontWeight="bold" sx={{ marginBottom: "10px", fontFamily: "Fira Sans, sans-serif" }}>
-          Upcoming Events
-        </Typography>
-        <UpcomingEvents />
-      </Grid>
     </Box>
   );
 };

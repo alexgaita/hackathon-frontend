@@ -8,7 +8,7 @@ const Searchbar = (props) => {
     <Box
       sx={{
         width: "100%",
-        height: "100px",
+        minHeight: "100px",
         backgroundColor: "#001789",
         display: "flex",
         alignItems: "center",
