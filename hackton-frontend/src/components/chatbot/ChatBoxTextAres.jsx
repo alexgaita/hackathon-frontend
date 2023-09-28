@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Box, IconButton } from "@mui/material";
-import Textarea from "@mui/joy/Textarea";
+import { Box, IconButton, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
 const ChatBoxTextArea = (props) => {
@@ -18,24 +17,31 @@ const ChatBoxTextArea = (props) => {
         alignItems: "flex-start",
       }}
     >
-      <Textarea
-        color="#FFE33A"
+      <TextField
+        color="#001789"
+        placeholder="Type your question...."
         sx={{
           width: "90%",
           backgroundColor: "rgba( 255,227,58,.2)",
-          color: "#001789",
+          borderRadius: "10px",
+          padding: 0.5,
         }}
         onChange={(e) => {
           setTextAreaValue(e.target.value);
         }}
-        minRows={3}
-      ></Textarea>
+        multiline
+        rows={3}
+        variant="standard"
+        InputProps={{
+          disableUnderline: true,
+        }}
+      />
       <IconButton
         onClick={handleMessageSent}
-        sx={{ marginTop: "auto", marginBottom: "30px" }}
+        sx={{ marginTop: "auto", marginBottom: "35px", zIndex: 1 }}
         size="small"
       >
-        <SendIcon />
+        <SendIcon sx={{ color: "#001789" }} />
       </IconButton>
     </Box>
   );

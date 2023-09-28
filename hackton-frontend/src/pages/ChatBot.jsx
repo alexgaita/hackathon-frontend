@@ -4,6 +4,7 @@ import ChatBotHeader from "../components/chatbot/ChatBotHeader";
 import ChatBoxMessageMapper from "../components/chatbot/ChatBoxMessageMapper";
 import messages from "../utils/constants";
 import ChatBoxTextArea from "../components/chatbot/ChatBoxTextAres";
+import { requestGenerator } from "../utils/generateRequest";
 import { useState } from "react";
 const ChatBot = (props) => {
   const isOpen = props.isOpen;
@@ -11,6 +12,7 @@ const ChatBot = (props) => {
   const [messagesState, setMessagesState] = useState(messages);
   const [textAreaValue, setTextAreaValue] = useState("");
   const handleMessageSent = () => {
+    console.log(requestGenerator(textAreaValue));
     setMessagesState((value) => [
       ...value,
       { text: textAreaValue, user: true },

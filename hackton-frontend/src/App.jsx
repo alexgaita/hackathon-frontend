@@ -4,7 +4,6 @@ import Login from "./pages/LoginPage";
 import Homepage from "./pages/HomePage";
 import { useEffect } from "react";
 
-
 function App() {
 
   useEffect(() => {
