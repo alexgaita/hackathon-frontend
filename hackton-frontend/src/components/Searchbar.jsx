@@ -1,8 +1,8 @@
-import { Avatar, Box, IconButton, Typography, Button } from "@mui/material";
+/* eslint-disable react/prop-types */
+import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import logo from "../assets/Hotel24.png";
-import myButtonImage from "../assets/microphone_button.png"
-
-const Searchbar = () => {
+const Searchbar = (props) => {
+  const openModal = props.open;
   return (
     <Box
       sx={{
@@ -30,7 +30,7 @@ const Searchbar = () => {
             Home
           </Typography>
         </IconButton>
-        <IconButton>
+        <IconButton onClick={openModal}>
           <Typography color="white" variant="subtitle1">
             Chat
           </Typography>
