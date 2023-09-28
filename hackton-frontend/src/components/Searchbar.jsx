@@ -94,6 +94,8 @@ const Searchbar = (props) => {
               top: "10%",
               left: "50%",
               transform: "translateX(-50%)",
+              border: '4px solid white',
+              borderRadius: 4
             }}
           />
         </IconButton>
