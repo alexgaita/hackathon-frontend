@@ -5,6 +5,7 @@ import image2 from "../assets/image2.png"
 import image3 from "../assets/image3.png"
 
 import * as STAT_REQ from '../api/statistics'
+import { AddBoxSharp } from "@mui/icons-material";
 
 const MostSearchedCities = () => {
   const [cityData, setCityData] = useState([]);
@@ -20,7 +21,6 @@ const MostSearchedCities = () => {
   const handleGetMostSearched = async () => {
     try {
       const response = await STAT_REQ.getMostSearchedCities()
-      console.log(response)
       setCityData(response.data)
     } catch (e) {
       console.error(e)
@@ -53,7 +53,7 @@ const MostSearchedCities = () => {
               backgroundSize: "cover",
             }}
           >
-            <Box sx={{ flex: 0.3 }} />
+            <AddBoxSharp />
             <Box sx={{ flex: 1 }} display="flex" alignItems="center" justifyContent="center">
               <Typography variant="h4" fontWeight="bold" color={"white"}>
                 {cityInfo.city}
@@ -72,9 +72,7 @@ const MostSearchedCities = () => {
                   }}
                 >
                   {cityInfo.statistic === "low" ? "Low" : "High"} price{" "}
-                  <Typography variant="h8" fontWeight="bold" component="span" sx={{ marginRight: "10px", marginLeft: "10px" }}>
-                    {cityInfo.meanPrice + "%"}
-                  </Typography>
+                  {cityInfo.meanPrice + "%"}
                 </Typography>
               </Box>
               <Box
@@ -86,7 +84,7 @@ const MostSearchedCities = () => {
                 }}
               >
                 <Typography
-                  variant="h6"
+                  variant="body1"
                   fontWeight={"bold"}
                   sx={{
                     color: "white",

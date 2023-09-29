@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import Searchbar from "../components/Searchbar";
 import { useState } from "react";
 import ChatBot from "./ChatBot";
@@ -28,16 +28,16 @@ const Homepage = () => {
       <Searchbar open={handleOpenModal} />
       <ChatBot isOpen={isOpenModal} close={handleCloseModal} />
       <Box pt={2}>
-        <Box display="flex" flexDirection="row" flex={1} width="100%" p={3.5}>
-          <Box sx={{ flex: 1 }}>
+        <Grid container display="flex" flexDirection="row" width="100%" p={3.5}>
+          <Grid item xs={6} >
             <AccommodationsBased />
-          </Box>
-          <Box sx={{ flex: 1 }}>
+          </Grid>
+          <Grid item xs={6} >
             <MostSearchedCities />
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
         <Box p={4} pt={0}>
-          <Typography variant="h6" fontWeight="bold" sx={{ fontFamily: "Fira Sans, sans-serif",  marginBottom: "14px"  }}>
+          <Typography variant="h6" fontWeight="bold" sx={{ fontFamily: "Fira Sans, sans-serif", marginBottom: "14px" }}>
             Upcoming Events
           </Typography>
           <UpcomingEvents />
