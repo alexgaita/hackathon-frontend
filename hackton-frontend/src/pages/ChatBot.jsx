@@ -63,8 +63,8 @@ const ChatBot = (props) => {
       >
         <ChatBotHeader
           close={close}
-          username={username}
-          position={"Medical Assistant"}
+          username={"Doctari Assistant"}
+          position={"We are here to help you."}
         />
         <Divider sx={{ width: "90%", backgroundColor: "#FFE33A" }} />
         <ChatBoxMessageMapper messages={messagesState} loading={loading} />

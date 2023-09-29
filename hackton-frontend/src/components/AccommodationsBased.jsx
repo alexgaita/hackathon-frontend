@@ -3,10 +3,8 @@ import { Typography, Box } from "@mui/material";
 import image1 from "../assets/image1.png"
 
 import * as STAT_REQ from '../api/statistics'
-import { useNavigate } from "react-router-dom";
 
 const AccommodationsBased = () => {
-    const navigate = useNavigate()
     const [cityData, setCityData] = useState([]);
 
     useEffect(() => {
@@ -42,7 +40,7 @@ const AccommodationsBased = () => {
                             </Typography>
                         </Box>
                         <Box flex={1} pl={2} pr={2} display="flex" flexDirection="row" alignItems={"flex-end"} pb={2}>
-                            <Box sx={{ flex: 1 }} display="flex" flexDirection="row" alignItems="center">
+                            <Box sx={{ flex: 1.5 }} display="flex" flexDirection="row" alignItems="center">
                                 <Box sx={{ backgroundColor: 'green' }} display="flex" flexDirection="row" alignItems="center" justifyContent="center" color="white" p={.5} borderRadius={1}>9.2</Box>
                                 <Typography pl={.5} sx={{opacity: 0.3}} variant="caption">Good Price</Typography>
                             </Box>

@@ -17,6 +17,8 @@ const ChatBotHeader = (props) => {
         justifyContent: "flex-start",
         alignItems: "center",
         gap: "30px",
+        paddingLeft: 6,
+        paddingTop: 1
       }}
     >
       <Avatar
@@ -30,16 +32,14 @@ const ChatBotHeader = (props) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center",
-          gap: "10p",
         }}
       >
-        <Typography variant="h5">{username}</Typography>
-        <Typography variant="subtitle1">{position}</Typography>
+        <Typography fontWeight={600} sx={{ letterSpacing: 2 }} variant="h6">{username}</Typography>
+        <Typography variant="subtitle2">{position}</Typography>
       </Box>
       <IconButton
         onClick={handleClose}
-        sx={{ marginRight: "10px", marginLeft: "auto" }}
+        sx={{ marginRight: "40px", marginLeft: "auto" }}
       >
         <CloseIcon fontSize="large" />
       </IconButton>

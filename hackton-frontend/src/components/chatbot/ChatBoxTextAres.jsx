@@ -17,7 +17,7 @@ const ChatBoxTextArea = (props) => {
         flexDirection: "row",
       }}
     >
-      <Box flex={1} display="flex" flexDirection="row">
+      <Box flex={1} display="flex" flexDirection="row" sx={{ paddingLeft: '27px', paddingBottom: '18px' }}>
         <TextField
           color="#001789"
           placeholder="Type your question...."
@@ -43,21 +43,21 @@ const ChatBoxTextArea = (props) => {
         <SendIcon onClick={handleMessageSent} sx={{ color: "#001789", position: 'relative', left: "-48px", top: "50px", cursor: 'pointer' }} />
       </Box>
       <Box width={40}>
-      <Avatar
-            alt="My Button"
-            src={myButtonImage}
-            variant="square"
-            sx={{
-              cursor: 'pointer',
-              width: "40px",
-              height: "40px",
-              border: "4px solid white",
-              borderRadius: 4,
-              position: 'relative',
-              left: "-20px",
-              top: "50px"
-            }}
-          />
+        <Avatar
+          alt="My Button"
+          src={myButtonImage}
+          variant="square"
+          sx={{
+            cursor: 'pointer',
+            width: "40px",
+            height: "40px",
+            border: "4px solid white",
+            borderRadius: 4,
+            position: 'relative',
+            left: "-20px",
+            top: "50px"
+          }}
+        />
       </Box>
     </Box>
   );

@@ -53,7 +53,6 @@ const MostSearchedCities = () => {
               backgroundSize: "cover",
             }}
           >
-            <AddBoxSharp />
             <Box sx={{ flex: 1 }} display="flex" alignItems="center" justifyContent="center">
               <Typography variant="h4" fontWeight="bold" color={"white"}>
                 {cityInfo.city}
