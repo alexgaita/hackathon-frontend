@@ -12,17 +12,29 @@ const ChatBot = (props) => {
   const close = props.close;
   const [messagesState, setMessagesState] = useState([]);
   const [textAreaValue, setTextAreaValue] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+
+  const scrollToBottomOfChat = () => {
+    setTimeout(() => {
+      const chatContainer = document.getElementById('chat-container')
+      if (chatContainer) {
+        chatContainer.scroll({ top: chatContainer.scrollHeight, behavior: 'smooth' });
+      }
+    }, 1000);
+  }
+
   const handleMessageSent = async () => {
     setMessagesState((value) => [
       ...value,
       { text: textAreaValue, user: true },
     ]);
     setLoading(true);
-    const data = await postQuestion(requestGenerator(textAreaValue)).then(
-      setLoading(false)
-    );
+    setTextAreaValue('')
+    scrollToBottomOfChat()
+    const data = await postQuestion(requestGenerator(textAreaValue))
+    setLoading(false)
     setMessagesState((value) => [...value, { text: data, user: false }]);
+    scrollToBottomOfChat()
   };
 
   return (
@@ -58,6 +70,7 @@ const ChatBot = (props) => {
         <ChatBoxMessageMapper messages={messagesState} loading={loading} />
         <Divider sx={{ width: "90%", backgroundColor: "#FFE33A" }} />
         <ChatBoxTextArea
+          textAreaValue={textAreaValue}
           setTextAreaValue={setTextAreaValue}
           handleMessageSent={handleMessageSent}
         />

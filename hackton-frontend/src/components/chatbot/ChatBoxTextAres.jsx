@@ -5,6 +5,7 @@ import SendIcon from "@mui/icons-material/Send";
 const ChatBoxTextArea = (props) => {
   const setTextAreaValue = props.setTextAreaValue;
   const handleMessageSent = props.handleMessageSent;
+  const textAreaValue = props.textAreaValue;
 
   return (
     <Box
@@ -15,6 +16,7 @@ const ChatBoxTextArea = (props) => {
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "flex-start",
+        paddingLeft: "12px"
       }}
     >
       <TextField
@@ -29,6 +31,7 @@ const ChatBoxTextArea = (props) => {
         onChange={(e) => {
           setTextAreaValue(e.target.value);
         }}
+        value={textAreaValue}
         multiline
         rows={3}
         variant="standard"

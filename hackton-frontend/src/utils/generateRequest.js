@@ -1,5 +1,4 @@
 export const requestGenerator = (text) => {
-  console.log(text);
   const requestData = {
     content: text,
     price: 0,
@@ -8,18 +7,32 @@ export const requestGenerator = (text) => {
     location: "",
   };
 
-  const indexOfIn = text.indexOf("in");
-  const indexOfStart = text.indexOf("starting");
-  requestData.location = text.slice(indexOfIn + 2, indexOfStart - 1).trim();
+// Define regular expressions to match the desired patterns
+const locationRegex = /Give me 3 accommodations in ([^\s]+)/;
+const dateRegex = /(\d{1,2}\/\d{1,2}\/\d{4})\s+until\s+(\d{1,2}\/\d{1,2}\/\d{4})/;
+const priceRegex = /price\s+up\s+to\s+(\d+)/;
 
-  const indexOfWith = text.indexOf("with");
-  const indexOfUntil = text.indexOf("until");
-  requestData.start = text.slice(indexOfWith + 5, indexOfUntil - 1).trim();
+// Extract values using regular expressions
+const locationMatch = text.match(locationRegex);
+const dateMatch = text.match(dateRegex);
+const priceMatch = text.match(priceRegex);
 
-  const indexOfAnd = text.indexOf("and");
-  requestData.end = text.slice(indexOfUntil + 6, indexOfAnd - 1).trim();
+// Check if matches were found and extract the values
+const location = locationMatch ? locationMatch[1] : null;
+const startDate = dateMatch ? dateMatch[1] : null;
+const endDate = dateMatch ? dateMatch[2] : null;
+const price = priceMatch ? parseInt(priceMatch[1], 10) : null;
 
-  requestData.price = Number(text.slice(text.length - 4, text.length - 1));
+  requestData.price = price
+  requestData.start = startDate
+  requestData.end = endDate
+  requestData.location = location
+  
+  // Output the extracted values
+  console.log("Location:", location);
+  console.log("Start Date:", startDate);
+  console.log("End Date:", endDate);
+  console.log("Price:", price);
 
-  return requestData;
+  return requestData
 };

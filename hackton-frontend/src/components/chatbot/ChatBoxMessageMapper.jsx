@@ -17,6 +17,7 @@ const ChatBoxMessageMapper = (props) => {
 
   return (
     <Box
+      id="chat-container"
       sx={{
         height: "60%",
         width: "90%",
