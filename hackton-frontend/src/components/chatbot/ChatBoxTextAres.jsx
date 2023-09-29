@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Avatar, Box, IconButton, TextField } from "@mui/material";
+import { Avatar, Box, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import myButtonImage from "../../assets/microphone_button.png";
 

@@ -4,15 +4,23 @@ import ChatBotHeader from "../components/chatbot/ChatBotHeader";
 import ChatBoxMessageMapper from "../components/chatbot/ChatBoxMessageMapper";
 import ChatBoxTextArea from "../components/chatbot/ChatBoxTextAres";
 import { requestGenerator } from "../utils/generateRequest";
-import { useState } from "react";
-import { postQuestion } from "../service/service";
+import { useEffect, useState } from "react";
+import { postQuestion, postQuestionLocal } from "../service/service";
 const ChatBot = (props) => {
-  const username = localStorage.getItem("username");
   const isOpen = props.isOpen;
   const close = props.close;
   const [messagesState, setMessagesState] = useState([]);
   const [textAreaValue, setTextAreaValue] = useState("");
   const [loading, setLoading] = useState(false);
+  const [accommodations, setAccommodations] = useState(undefined)
+  const [chatType, setChatType] = useState('local')
+
+  useEffect(() => {
+    setAccommodations(undefined)
+    setMessagesState([])
+    setLoading(false)
+    setTextAreaValue('')
+  }, [chatType])
 
   const scrollToBottomOfChat = () => {
     setTimeout(() => {
@@ -34,6 +42,21 @@ const ChatBot = (props) => {
     const data = await postQuestion(requestGenerator(textAreaValue))
     setLoading(false)
     setMessagesState((value) => [...value, { text: data, user: false }]);
+    scrollToBottomOfChat()
+  };
+
+  const handleMessageSentLocal = async () => {
+    setMessagesState((value) => [
+      ...value,
+      { text: textAreaValue, user: true },
+    ]);
+    setLoading(true);
+    setTextAreaValue('')
+    scrollToBottomOfChat()
+    const { rows } = await postQuestionLocal({ message: textAreaValue })
+    setAccommodations(rows)
+    setLoading(false)
+    setMessagesState((value) => [...value, { text: "Based on your question we have the following accommodations.", user: false }]);
     scrollToBottomOfChat()
   };
 
@@ -63,16 +86,18 @@ const ChatBot = (props) => {
       >
         <ChatBotHeader
           close={close}
+          chatType={chatType}
+          setChatType={setChatType}
           username={"Doctari Assistant"}
           position={"We are here to help you."}
         />
         <Divider sx={{ width: "90%", backgroundColor: "#FFE33A" }} />
-        <ChatBoxMessageMapper messages={messagesState} loading={loading} />
+        <ChatBoxMessageMapper messages={messagesState} loading={loading} accommodations={accommodations} />
         <Divider sx={{ width: "90%", backgroundColor: "#FFE33A" }} />
         <ChatBoxTextArea
           textAreaValue={textAreaValue}
           setTextAreaValue={setTextAreaValue}
-          handleMessageSent={handleMessageSent}
+          handleMessageSent={() => chatType === 'openAi' ? handleMessageSent() : handleMessageSentLocal()}
         />
       </Box>
     </Modal>

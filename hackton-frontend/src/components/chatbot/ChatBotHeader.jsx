@@ -7,6 +7,8 @@ const ChatBotHeader = (props) => {
   const username = props.username;
   const position = props.position;
   const handleClose = props.close;
+  const { chatType, setChatType } = props
+
   return (
     <Box
       sx={{
@@ -37,12 +39,22 @@ const ChatBotHeader = (props) => {
         <Typography fontWeight={600} sx={{ letterSpacing: 2 }} variant="h6">{username}</Typography>
         <Typography variant="subtitle2">{position}</Typography>
       </Box>
-      <IconButton
-        onClick={handleClose}
-        sx={{ marginRight: "40px", marginLeft: "auto" }}
-      >
-        <CloseIcon fontSize="large" />
-      </IconButton>
+      <Box display="flex" flexDirection="row" alignItems="center" ml="auto">
+        <Box p={0.5} display="flex" flexDirection="row" width={120} height={35} borderRadius={8} alignItems={"center"} justifyContent={"center"} bgcolor={"#EBEBEB"}>
+          <Box onClick={() => setChatType('openAi')} sx={{ cursor: 'pointer', backgroundColor: chatType === 'openAi' ? "white" : "", height: '100%', borderRadius: 8 }} flex={1} textAlign={"center"} display="flex" alignItems="center">
+            <Typography color="#7A7A7A" variant="caption">Chat GPT</Typography>
+          </Box>
+          <Box onClick={() => setChatType('local')} flex={1} textAlign={"center"} sx={{ cursor: 'pointer', backgroundColor: chatType === 'local' ? "white" : "", height: '100%', borderRadius: 8 }} alignItems="center" display="flex" justifyContent={"center"}>
+            <Typography color="#7A7A7A" variant="caption">Local</Typography>
+          </Box>
+        </Box>
+        <IconButton
+          onClick={handleClose}
+          sx={{ marginRight: "40px", marginLeft: "auto" }}
+        >
+          <CloseIcon fontSize="large" />
+        </IconButton>
+      </Box>
     </Box>
   );
 };

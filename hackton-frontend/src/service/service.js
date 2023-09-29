@@ -10,3 +10,14 @@ export const postQuestion = async (data) => {
     })
     .then((res) => res.data.data);
 };
+
+export const postQuestionLocal = async (data) => {
+  return axios
+    .post(baseurl + "/apartment", data, {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .then((res) => res.data.data);
+};
