@@ -40,11 +40,11 @@ const ChatBotHeader = (props) => {
         <Typography variant="subtitle2">{position}</Typography>
       </Box>
       <Box display="flex" flexDirection="row" alignItems="center" ml="auto">
-        <Box p={0.5} display="flex" flexDirection="row" width={120} height={35} borderRadius={8} alignItems={"center"} justifyContent={"center"} bgcolor={"#EBEBEB"}>
-          <Box onClick={() => setChatType('openAi')} sx={{ cursor: 'pointer', backgroundColor: chatType === 'openAi' ? "white" : "", height: '100%', borderRadius: 8 }} flex={1} textAlign={"center"} display="flex" alignItems="center">
+        <Box p={0.5} display="flex" flexDirection="row" width={120} height={35} borderRadius={4} alignItems={"center"} justifyContent={"center"} bgcolor={"#EBEBEB"}>
+          <Box onClick={() => setChatType('openAi')} sx={{ cursor: 'pointer', backgroundColor: chatType === 'openAi' ? "white" : "", height: '100%', borderRadius: 4 }} flex={1} justifyContent="center" display="flex" alignItems="center">
             <Typography color="#7A7A7A" variant="caption">Chat GPT</Typography>
           </Box>
-          <Box onClick={() => setChatType('local')} flex={1} textAlign={"center"} sx={{ cursor: 'pointer', backgroundColor: chatType === 'local' ? "white" : "", height: '100%', borderRadius: 8 }} alignItems="center" display="flex" justifyContent={"center"}>
+          <Box onClick={() => setChatType('local')} flex={1} textAlign={"center"} sx={{ cursor: 'pointer', backgroundColor: chatType === 'local' ? "white" : "", height: '100%', borderRadius: 4 }} alignItems="center" display="flex" justifyContent={"center"}>
             <Typography color="#7A7A7A" variant="caption">Local</Typography>
           </Box>
         </Box>
